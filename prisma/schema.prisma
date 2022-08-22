@@ -51,6 +51,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    stripe_id      String?
 }
 
 model VerificationToken {
@@ -62,19 +63,21 @@ model VerificationToken {
 }
 
 
-model Order_Items {
-    id String @unique
-    created_at DateTime
-    modified_at DateTime
 
 
- 
-}
+
 model Product {
-    id Int @unique @default(autoincrement())
+    id String @unique
+    active Boolean?
     name String
     description String
-    image_url String
-    price Int
+    default_price String?
+    created DateTime?
+    images String[]
+    shipable Boolean?
+    price String 
+
+
 
 }
+

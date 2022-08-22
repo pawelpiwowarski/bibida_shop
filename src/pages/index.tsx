@@ -10,6 +10,8 @@ const Home: NextPage = () => {
   const all = trpc.useQuery(["example.getAll"])
 
 
+  console.log(all.data)
+
   return (
  
     <Layout>
@@ -30,18 +32,19 @@ const Home: NextPage = () => {
           <p className="mt-4 text-sm text-gray-700 max-w-[45ch]">
         View our collections of unique bottles 
           </p>
-
+          <Link  href="/products">
           <a
-            href="/products"
+
             className="inline-block px-6 py-3 mt-6 text-sm text-white bg-black rounded"
           >
             View the Bibida Collection 
           </a>
+          </Link>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 lg:col-span-2 lg:grid-cols-3 lg:py-12">
-        <Link href="/products/simple_bottle">
+        <Link href="/products/1">
         <a
           
           className="block"

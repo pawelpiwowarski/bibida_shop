@@ -1,12 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import Head from 'next/head';
 import Link from 'next/link'
-
+import { useSession } from "next-auth/react"
+import Authenticated_User_Menu from './Authenticated_User_Menu';
 type LayoutProps = {
   children : React.ReactNode
 }
 export const Layout=  (props: LayoutProps)=> {
+  const {data: session, status} = useSession()
 
+  const authenticated = status == 'authenticated'
 
     return (<div>  <Head>
         <title>Bibida Shop</title>
@@ -27,16 +30,27 @@ export const Layout=  (props: LayoutProps)=> {
         </a>
         </Link>
         <div className="flex items-center md:order-2">
+          { !authenticated && <div>
           <Link href={'/login'}><a className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Login
             </a></Link>
 
 
-            <Link href={'sign_up'}>
-            <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign up</a></Link>
-            <button data-collapse-toggle="mega-menu-icons" type="button" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu-icons" aria-expanded="false">
-                <span className="sr-only">Open main menu</span>
-                 <svg aria-hidden="true" className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
-            </button>
+          
+            </div>
+            }
+
+            {
+             authenticated &&  <Authenticated_User_Menu></Authenticated_User_Menu>
+
+            
+            }
+            <Link href={'/shopping_cart'}>
+          <a>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+  <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
+</svg>
+</a>
+</Link>
         </div>
         <div id="mega-menu-icons" className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
             <ul className="flex flex-col mt-4 text-sm font-medium md:flex-row md:space-x-8 md:mt-0">
@@ -60,7 +74,9 @@ export const Layout=  (props: LayoutProps)=> {
                 
                 </li>
                 <li>
+
                     <a href="#" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Team</a>
+
                 </li>
 
              

@@ -5,3 +5,21 @@
     bottom: 0;
     position: relative;
   }
+
+  .no-spinners {
+    -moz-appearance: textfield;
+  }
+
+  .no-spinners::-webkit-outer-spin-button,
+  .no-spinners::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+
+  #dropdownAvatar {
+    position: absolute;
+     inset: 0px auto auto 0px; 
+     margin: 0px; 
+     transform: translate3d(325.5px, 62px, 0px)
+  }
